@@ -1,39 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Network Error</title>
 
     <style>
         body {
-            font-family: Arial;
-            text-align: center;
-            padding-top: 150px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .box {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 35px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
         }
 
         h1 {
-            color: red;
+            margin: 10px 0;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.5;
         }
 
         button {
+            margin-top: 20px;
             padding: 12px 25px;
-            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: #222;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>⚠️ Network Error</h1>
+    <div class="box">
+        <div class="icon">⚠️</div>
 
-    <p>Unable to connect to the internet.</p>
-    <p>Please check your network connection.</p>
+        <h1>Network Error</h1>
 
-    <button onclick="retry()">Retry</button>
+        <p>Unable to connect to the Internet.</p>
+        <p>Please check your network connection.</p>
+
+        <button onclick="checkNetwork()">Retry</button>
+
+        <div id="status"></div>
+    </div>
 
     <script>
-        function retry() {
-            alert("Network Error ❌");
+        function checkNetwork() {
+            const status = document.getElementById("status");
+
+            if (navigator.onLine) {
+                status.textContent = "✅ Internet connection is available.";
+            } else {
+                status.textContent = "❌ No internet connection.";
+            }
         }
     </script>
 
